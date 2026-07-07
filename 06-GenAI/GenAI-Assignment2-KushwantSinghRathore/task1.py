@@ -1,10 +1,18 @@
-# 1. Grab the raw string
-raw_input = input("Enter order amount: ")
+price = float(input("Enter original price: "))
 
-# 2. Inspect it using your control flow
-if not raw_input.isdigit():
-    print("Error: That is not a number! Exiting.")
-    exit()
+discount_percent = 5
+tax_percent = 5
 
-# 3. If the script survived the check above, it is safe to convert!
-order_amount = int(raw_input)
+discount_amount = price * (discount_percent / 100)
+subtotal = price - discount_amount
+
+tax_amount = subtotal * (tax_percent / 100)
+
+final_total = subtotal + tax_amount
+
+print("\n--- Receipt Breakdown ---")
+print("Original Price: ", price)
+print("Discount (5%): ", discount_amount)
+print("Subtotal after discount: ", subtotal)
+print("Tax (5%): ", tax_amount)
+print("Final Total Amount: ", final_total)

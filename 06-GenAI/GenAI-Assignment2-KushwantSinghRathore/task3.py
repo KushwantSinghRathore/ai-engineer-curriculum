@@ -1,53 +1,46 @@
-# 1. Initialize storage outside the loop
 order_list = []
 
-# 2. Start the menu engine
 while True:
     print("\n--- MENU ---")
-    menu = input("1: Add order\n2: Show summary\nq: Quit\nChoose: ")
+    choice = input("1: Add order\n2: Show summary\nq: Quit\nChoose: ")
 
-    # 3. Add to the running list
-    if menu == "1":
-        amount_str = input("Enter order amount: ")
-        if amount_str.isdigit():
-            order_list.append(int(amount_str))
+    if choice == "1":
+        amount = input("Enter order amount: ")
+        if amount.isdigit():
+            order_list.append(int(amount))
             print("Order added!")
         else:
-            print("Invalid input! Please enter a number.")
-            continue
+            print("Invalid input.")
 
-    # 4. Process all orders (The Task 2 logic)
-    elif menu == "2":
+    elif choice == "2":
         total_revenue = 0
         discount_count = 0
         print("\n--- Summary Table ---")
         
-        # This loop processes the "running list"
-        for current_order in order_list:
-            if current_order >= 2000:
-                discount_percentage = 0.15
-            elif current_order >= 1500:
-                discount_percentage = 0.10
-            elif current_order >= 1000:
-                discount_percentage = 0.07
+        for price in order_list:
+            if price >= 2000:
+                discount = 0.15
+            elif price >= 1500:
+                discount = 0.10
+            elif price >= 1000:
+                discount = 0.07
             else:
-                discount_percentage = 0
+                discount = 0
             
-            final_amount = current_order * (1 - discount_percentage)
-            total_revenue += final_amount
-            if discount_percentage > 0:
+            final_price = price * (1 - discount)
+            total_revenue += final_price
+            
+            if discount > 0:
                 discount_count += 1
-            print(f"{current_order} -> {discount_percentage*100}% -> {final_amount}")
+            
+            print(f"{price} -> {int(discount*100)}% -> {final_price}")
         
-        print(f"Total Revenue: {total_revenue}")
-        print(f"Total discounted orders: {discount_count}")
+        print("Total Revenue:", total_revenue)
+        print("Total discounted orders:", discount_count)
 
-    # 5. Quit
-    elif menu == "q" or menu == "Q":
+    elif choice == "q":
         print("Goodbye!")
         break
 
-    # 6. Handle invalid input
     else:
-        print("Invalid choice, please try again.")
-        continue
+        print("Invalid choice.")
