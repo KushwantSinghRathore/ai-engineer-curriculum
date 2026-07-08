@@ -1,6 +1,6 @@
 calculate_gst = lambda price: price + (price*0.18)
 
-final_price_calc = lambda price, discount: (price * (1 - discount)) + (1.18)
+final_price_calc = lambda price, discount: (price * (1 - discount)) * (1.18)
 
 base_price = 100
 discount_percent = 0.10
