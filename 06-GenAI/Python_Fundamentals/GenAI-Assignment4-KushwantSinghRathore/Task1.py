@@ -14,7 +14,8 @@ with open("sales_data_comma.txt", "w") as f:
     for x in sales:
         f.write(str(x) +", ")
 
-print("Contents of sales_data.txt:")
+
 with open("sales_data_comma.txt", "r") as file:
     #Read and print the comma seprated data
     print(file.read())
+
