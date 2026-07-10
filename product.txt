@@ -1,6 +1,0 @@
-mango  |100
-apple  |120
-papaya  |70
-strawberry  |200
-lichi  |300
-kiwi  |240
