@@ -21,11 +21,10 @@ print("Capitalized:", string_utils.capitalize_words(my_text))
 print("Reversed:", string_utils.reverse_string(my_text))
 print("Word count:", string_utils.word_count(my_text))
 
-from shop_package import apply_discount, calculate_total
+# Importing the Package
+import shop_package.discount as disc
+from shop_package.billing import calculate_total
 
-# Use of shop package
-prices = [100, 200, 300]
-total = calculate_total(prices)
-final_price = apply_discount(total, 10)
-
-print(f"Total: {total}, Final Price: {final_price}")
+# Testing the package functions
+print(f"Discounted Price: {disc.apply_discount(1000, 10)}")
+print(f"Total Bill: {calculate_total([100, 200, 300])}")
