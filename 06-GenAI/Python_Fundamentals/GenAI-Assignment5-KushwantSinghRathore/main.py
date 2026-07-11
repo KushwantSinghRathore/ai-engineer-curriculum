@@ -8,3 +8,15 @@ n = int(input("Enter value for square: "))
 print(f"Addition is: {mu.add(a,b)}")
 print(f"Subtraction is: {mu.subtract(a,b)}")
 print(f"Square is: {square(n)}")
+
+
+# using string_utils.py
+import string_utils
+
+# Test data
+my_text = "hello python world"
+
+# Calling module functions
+print("Capitalized:", string_utils.capitalize_words(my_text))
+print("Reversed:", string_utils.reverse_string(my_text))
+print("Word count:", string_utils.word_count(my_text))
