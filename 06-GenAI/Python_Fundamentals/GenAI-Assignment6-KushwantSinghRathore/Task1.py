@@ -1,13 +1,13 @@
+# Task 1: Safe Division
 try:
-    numerator = int(input("Enter the numerator: "))
-    denominator = int(input("Enter the denominator: "))
-    result = numerator / denominator
+    num = int(input("Enter numerator: "))
+    den = int(input("Enter denominator: "))
+    result = num / den
 except ValueError:
-    print("Error: Please enter valid integers.")
+    print("Error: Please enter a valid number.")
 except ZeroDivisionError:
-    print("Error: 0 cannot be used as a denominator.")
+    print("Error: Cannot divide by zero.")
 else:
-    # Print the result only if no errors occurred
     print(f"The result is: {result}")
 finally:
     print("Operation Complete")

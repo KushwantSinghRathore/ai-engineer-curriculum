@@ -1,22 +1,19 @@
-filename = input("Enter the filename: ")
+# Task 4: File Reader
+filename = input("Enter filename: ")
 
 try:
-    with open(filename, 'r') as file:
-        # Read the first 3 lines
-        for i in range(3):
-            line = file.readline()
-            if line:
-                print(f"Line {i+1}: {line.strip()}")
-            else:
-                break # Stop if the file has fewer than 3 lines
-
+    file = open(filename, 'r')
+    lines = file.readlines()
+    # Print first 3 lines (or fewer if file is short)
+    count = 0
+    for line in lines:
+        if count < 3:
+            print(line.strip())
+            count += 1
+    file.close()
 except FileNotFoundError:
-    print("Error: The file was not found.")
+    print("Error: File not found.")
 except PermissionError:
-    print("Error: You do not have permission to read this file.")
-except Exception as e:
-    # A catch-all for any other unexpected errors
-    print(f"An unexpected error occurred: {e}")
-
+    print("Error: Permission denied.")
 finally:
     print("File operation attempted.")
