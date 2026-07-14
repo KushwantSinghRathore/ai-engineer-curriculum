@@ -7,7 +7,7 @@ class Product:
     def get_info(self):
         return f"Product: {self.name}, Price: ${self.price}, Category: {self.category}"
 
-class ElectronicProducts(Product):
+class ElectronicProduct(Product):
     def __init__(self,name,price,category,warranty_years):
         super().__init__(name,price,category)
         self.warranty_years = warranty_years

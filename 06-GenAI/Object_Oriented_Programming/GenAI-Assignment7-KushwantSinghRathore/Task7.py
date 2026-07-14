@@ -1,4 +1,4 @@
-# 1. Base Class: Product
+# Base Product class
 class Product:
     def __init__(self, name, price, category):
         self.name = name
@@ -6,16 +6,12 @@ class Product:
         self.category = category
 
     def __str__(self):
-        """Returns string representation for printing."""
         return f"Product: {self.name} | Price: ${self.price} | Category: {self.category}"
 
     def __add__(self, other):
-        """Allows adding the price of two product objects."""
-        if isinstance(other, Product):
-            return self.price + other.price
-        return NotImplemented
+        return self.price + other.price
 
-# 2. Manager Class: Inventory
+# Inventory Manager
 class Inventory:
     def __init__(self):
         self.products = []
@@ -23,49 +19,47 @@ class Inventory:
     def add_product(self, product):
         self.products.append(product)
 
-    def get_total_value(self):
-        """Calculates total price of all items."""
-        return sum(p.price for p in self.products)
-
-    def show_all_products(self):
+    def remove_product(self, name):
         for p in self.products:
-            print(p)
+            if p.name == name:
+                self.products.remove(p)
+                print(f"Successfully removed: {name}")
+                return
+        print(f"Product '{name}' not found.")
 
-# 3. Interface Class: Store
+    def get_total_value(self):
+        total = 0
+        for p in self.products:
+            total += p.price
+        return total
+
+# Store Interface
 class Store:
     def __init__(self, name):
         self.store_name = name
         self.inventory = Inventory()
 
-    def add_new_product(self):
-        print(f"\n--- Adding to {self.store_name} ---")
-        name = input("Enter product name: ")
-        price = float(input("Enter product price: "))
-        cat = input("Enter product category: ")
-        
-        # Now Product is defined, so we can create it
-        new_prod = Product(name, price, cat)
-        self.inventory.add_product(new_prod)
-        print("Product added successfully!")
 
-    def show_summary(self):
-        print(f"\n--- {self.store_name} Summary ---")
-        print(f"Total items: {len(self.inventory.products)}")
-        print(f"Total inventory value: ${self.inventory.get_total_value()}")
+# Create Store
+my_store = Store("Tech Shop")
 
-# 4. Main Execution
-if __name__ == "__main__":
-    my_store = Store("TechHub")
-    
-    # Adding 2 products as requested
-    my_store.add_new_product()
-    my_store.add_new_product()
-    
-    # Showing summary
-    my_store.show_summary()
-    
-    # Demonstration of __add__
-    print("\n--- Operator Overloading Test ---")
-    p1 = my_store.inventory.products[0]
-    p2 = my_store.inventory.products[1]
-    print(f"Combined price of first two items: ${p1 + p2}")
+# Create 3 products
+p1 = Product("Laptop", 1000, "Electronics")
+p2 = Product("Mouse", 20, "Electronics")
+p3 = Product("Keyboard", 50, "Electronics")
+
+# Add 3 products
+my_store.inventory.add_product(p1)
+my_store.inventory.add_product(p2)
+my_store.inventory.add_product(p3)
+
+# Demonstrate removal
+my_store.inventory.remove_product("Mouse")
+
+# Show Summary
+print(f"Total items in inventory: {len(my_store.inventory.products)}")
+print(f"Total value of inventory: ${my_store.inventory.get_total_value()}")
+
+# Use __add__ to combine prices of two products
+combined_price = p1 + p3
+print(f"Combined price of Laptop and Keyboard: ${combined_price}")

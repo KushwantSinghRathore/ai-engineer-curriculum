@@ -5,14 +5,17 @@ class Payment(ABC):
     def process_payment(self, amount):
         pass  
 
-class CreditCard(Payment):
+class CreditCardPayment(Payment):
     def process_payment(self, amount):
-        print(f"Payment Done from CreditCard of Amount: {amount}.")
+        print(f"Paid {amount} using Credit Card.")
 
-class UPI(Payment):
+class UPIPayment(Payment):
     def process_payment(self, amount):
-        print(f"Payment Done from UPI of Amount: {amount}.")
+        print(f"Paid {amount} using UPI.")
 
-# --- Test ---
-my_pay = CreditCard()
-my_pay.process_payment(500)
+
+p1 = CreditCardPayment()
+p1.process_payment(500)
+
+p2 = UPIPayment()
+p2.process_payment(300)
